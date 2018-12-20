@@ -1,0 +1,8 @@
+.page {
+  margin-top: 12px;
+}
+
+.contentWrapper {
+  min-height: 90vh;
+  position: relative;
+}
