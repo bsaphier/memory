@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './TitleBar.scss';
+import styles from './TitleBar.module.css';
 
 const TitleBar = ({ title }) => (
   <div className={styles.container}>

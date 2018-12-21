@@ -15,14 +15,14 @@
 }
 
 .title {
-  font-family: 'nyt-karnak';
+  /* font-family: ''; */
   font-size: 36px;
   font-weight: bold;
   margin-right: 12px;
 }
 
 .date {
-  font-family: 'nyt-franklin';
+  /* font-family: ''; */
   display: inline-block;
   font-size: 26px;
   font-weight: 300;

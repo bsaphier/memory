@@ -1,0 +1,60 @@
+.cardWrapper {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  perspective: 600px;
+  position: relative;
+}
+
+.cardFace {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.card {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  font-size: 3em;
+  text-align: center;
+  width: 99%;
+  height: 99%;
+  padding: 8px;
+  border-radius: 3px;
+}
+
+.card[data-condensed] {
+  font-size: 2em;
+}
+
+.card.front {
+  background-color: #f0f0f0;
+  border: 1px solid #959595;
+}
+.card.front.highlighted {
+  background-color: #959595;
+}
+
+.card.back {
+  background-color: #f0f0f0;
+  background-image: radial-gradient(#fff, 62%, #efefef);
+  background-size: 46px, cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  border: 1px solid #959595;
+}
+.card.back[data-condensed] {
+  background-size: 24px, cover;
+}
+.card.back:hover {
+  background-color: #e9e9e9;
+  background-image: radial-gradient(#fff, #e9e9e9);
+}

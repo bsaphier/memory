@@ -14,14 +14,12 @@ const App = () => {
   
   return (
     <Provider store={store}>
-      <div>
-        {/**
-         * server-side rendering would crash the RRWAEngine
-         * so only render if the window object is available
-         */
-        global.window ? <RRWAEngine /> : null}
-        <Game />
-      </div>
+      {/**
+        * server-side rendering would crash the RRWAEngine
+        * so only render if the window object is available
+        */
+      global.window ? <RRWAEngine store={store} /> : null}
+      <Game />
     </Provider>
   );
 };

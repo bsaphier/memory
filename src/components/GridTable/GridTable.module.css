@@ -1,0 +1,24 @@
+.tableList {
+  box-sizing: border-box;
+  overflow: hidden;
+  overflow-y: scroll;
+  border-radius: 6px;
+  border: 1px solid #dcdcdc;
+  background-color: #fcfcfc;
+  height: 45vh;
+  min-height: 250px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: space-between;
+  list-style: none;
+}
+.tableList li {
+  box-sizing: border-box;
+  margin: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: space-between;
+}

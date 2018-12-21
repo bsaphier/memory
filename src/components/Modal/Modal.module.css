@@ -1,0 +1,142 @@
+.modalsContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 50;
+  display: none;
+}
+.modalsContainer.active {
+  display: block;
+}
+.modalsContainer .wrapper {
+  position: static;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(255,255,255,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  display: none;
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: 7px;
+  box-shadow: 0 4px 23px 0 rgba(0,0,0,0.08);
+  width: 450px;
+  max-height: calc(100% - 30px);
+  max-width: calc(100% - 30px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  text-align: center;
+}
+.modal.active {
+  display: block;
+}
+
+.contentWrapper {
+  padding: 50px;
+}
+
+.closeButton {
+  font-size: 35px;
+  /* font-family: ''; */
+  cursor: pointer;
+  color: #959595;
+  font-weight: lighter;
+  position: absolute;
+  padding: 16px;
+  top: 6px;
+  right: 6px;
+  width: 24px;
+  line-height: 24px;
+  border-radius: 50%;
+}
+.closeButton:hover {
+  background-color: rgba(0, 0, 0, 0.03);
+  color: #808080;
+}
+.closeButton:hover:active {
+  color: #959595;
+  background-color: rgba(0, 0, 0, 0.02);
+  top: 8px;
+  right: 7px;
+  width: 23px;
+  line-height: 23px;
+}
+
+.title {
+  font-size: 38px;
+  font-weight: 700;
+  /* font-family: ''; */
+}
+
+.content {
+  font-size: 18px;
+  font-weight: 500;
+  /* font-family: ''; */
+  margin: 25px 0 29px;
+}
+.content b {
+  font-weight: 700;
+}
+.content i {
+  font-style: italic;
+}
+
+.buttonWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.button {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  border: none;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  background: #000;
+  color: #fff;
+  font-weight: 700;
+  white-space: nowrap;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 500;
+  /* font-family: ''; */
+  min-width: 142px;
+  padding: 15px;
+}
+.button.disabled {
+  color: #ddd;
+  background: #777;
+}
+.button:hover {
+  color: #f4f4f4;
+  background: #222;
+}
+.button:hover:active {
+  background: #000;
+  transform: translate(1px, 2px);
+}
+
+.hidden {
+  border: none;
+  margin: 0;
+  padding: 0;
+  height: 0;
+  width: 0;
+  background: none;
+  position: relative;
+}
