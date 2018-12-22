@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import { onPlay } from '../action-creators/sound';
-// import { resetGame } from '../action-creators/game';
+import { resetGame } from '../action-creators/game';
 import { toggleModal } from '../action-creators/modals';
-// import { noMatch, match } from '../action-creators/cards';
+import { shuffleCards, noMatch, match } from '../action-creators/cards';
 import getAppLoadStatus from '../selectors/getAppLoadStatus';
 import getActiveCards from '../selectors/getActiveCards';
 import GameBoard from '../components/GameBoard/GameBoard';
@@ -22,15 +22,16 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   onLand: () => dispatch(toggleModal('landing')),
   onMatch: (id1, id2, id3) => {
-    // dispatch(match(id1, id2, id3));
+    dispatch(match(id1, id2, id3));
     dispatch(onPlay('cardFlip'));
   },
   onNoMatch: () => {
-    // dispatch(noMatch());
+    dispatch(noMatch());
     dispatch(onPlay('cardTouch'));
   },
   onReset: () => {
-    // dispatch(resetGame());
+    dispatch(resetGame());
+    dispatch(shuffleCards());
     dispatch(onPlay('typewriter'));
     dispatch(toggleModal('start'));
   },

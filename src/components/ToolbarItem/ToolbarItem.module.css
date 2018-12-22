@@ -1,0 +1,25 @@
+.toolbarItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  font-size: 18px;
+  line-height: 45px;
+  display: inline-block;
+  padding: 6px 13px 4px;
+  color: #959595;
+}
+.toolbarItem.active {
+  color: black;
+  font-weight: bold;
+}
+.toolbarItem:hover {
+  cursor: pointer;
+  background-color: #f4f4f4;
+}
+.toolbarItem img {
+  margin-bottom: -6px;
+  filter: invert(.59);
+  padding: 0px 8px;
+}

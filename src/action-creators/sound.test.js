@@ -14,39 +14,44 @@ test('Test SourceManager.playSound returns a function', () => {
   expect(typeof sourceManager.playSound(mockSourceData.name)).toBe('function');
 });
 
-test('Test the function returned by SourceManager.playSound: ', () => {
+describe('The function returned by SourceManager.playSound: ', () => {
   let audioEvent;
   let audioCtxMock;
   let sourceNodeSpy;
-  let AudioContextMock;
-  let AudioBufferSourceNodeMock;
 
   beforeEach(() => {
-    jest.clearAllMocks();
-    AudioBufferSourceNodeMock = () => {
-      this.buffer = null;
-      this.connect = jest.fn();
-      this.start = jest.fn();
-      this.stop = jest.fn();
-      return this;
-    };
-    AudioContextMock = () => {
-      this.currentTime = 0;
-      this.destination = {};
-      this.createBufferSource = jest.fn().mockImplementation(() => {
-        const mockSourceNode = new AudioBufferSourceNodeMock();
-        sourceNodeSpy = mockSourceNode; // now we spy on this mocked node when it is created
-        return mockSourceNode;
-      });
-      this.decodeAudioData = jest
-        .fn()
-        .mockImplementation(arrBuff => new Promise(res => res(arrBuff)));
-      return this;
-    };
+    class AudioBufferSourceNodeMock {
+      constructor() {
+        this.buffer = null;
+        this.connect = jest.fn();
+        this.start = jest.fn();
+        this.stop = jest.fn();
+        return this;
+      }
+    }
+    class AudioContextMock {
+      constructor() {
+        this.currentTime = 0;
+        this.destination = {};
+        this.createBufferSource = jest.fn().mockImplementation(() => {
+          const mockSourceNode = new AudioBufferSourceNodeMock();
+          sourceNodeSpy = mockSourceNode; // now we spy on this mocked node when it is created
+          return mockSourceNode;
+        });
+        this.decodeAudioData = jest
+          .fn()
+          .mockImplementation(arrBuff => new Promise(res => res(arrBuff)));
+        return this;
+      }
+    }
     const sourceManager = new SourceManager();
     sourceManager[mockSourceData.name] = mockSourceData.data;
     audioEvent = sourceManager.playSound(mockSourceData.name);
     audioCtxMock = new AudioContextMock();
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
   });
 
   test('calls AudioContext.createBufferSource', () => {
@@ -62,19 +67,19 @@ test('Test the function returned by SourceManager.playSound: ', () => {
     expect(audioCtxMock.decodeAudioData.mock.calls[0][0]).not.toBe(mockSourceData.data);
   });
 
-  test('calls AudioBufferSourceNode.connect', () => {
-    audioEvent(audioCtxMock, () => audioCtxMock.currentTime);
+  test('calls AudioBufferSourceNode.connect', async () => {
+    await audioEvent(audioCtxMock, () => audioCtxMock.currentTime);
     expect(sourceNodeSpy.connect).toHaveBeenCalled();
   });
 
-  test('calls AudioBufferSourceNode.start at 0 time', () => {
-    audioEvent(audioCtxMock, () => audioCtxMock.currentTime);
+  test('calls AudioBufferSourceNode.start at 0 time', async () => {
+    await audioEvent(audioCtxMock, () => audioCtxMock.currentTime);
     expect(sourceNodeSpy.start).toHaveBeenCalledWith(0);
   });
 
-  test('calls AudioBufferSourceNode.stop with a time in the future', () => {
+  test('calls AudioBufferSourceNode.stop with a time in the future', async () => {
     const getCurrentTimeStub = jest.fn().mockImplementation(() => audioCtxMock.currentTime);
-    audioEvent(audioCtxMock, getCurrentTimeStub);
+    await audioEvent(audioCtxMock, getCurrentTimeStub);
     expect(getCurrentTimeStub).toHaveBeenCalled();
     expect(sourceNodeSpy.stop.mock.calls[0][0]).toBeGreaterThan(audioCtxMock.currentTime);
   });

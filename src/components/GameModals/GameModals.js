@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import SuccessModal from '../../containers/SuccessModal';
+import SuccessModal from '../../containers/SuccessModal';
 import LandingModal from '../../containers/LandingModal';
-// import NewGameModal from '../../containers/NewGameModal';
+import NewGameModal from '../../containers/NewGameModal';
 import ModalViewer from '../Modal/ModalViewer';
 
 
 const GameModals = ({ active }) => (
   <ModalViewer active={active}>
-    {/* <SuccessModal /> */}
+    <SuccessModal />
     <LandingModal />
-    {/* <NewGameModal /> */}
+    <NewGameModal />
   </ModalViewer>
 );
 

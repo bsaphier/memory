@@ -1,25 +1,21 @@
-import axios from 'axios';
 import {
   SELECT_LEVEL,
-  LOAD_TRIPLES,
   FINISH_GAME,
   RESET_GAME,
   START_GAME,
   LOAD_GAME,
 } from '../action-types';
-import { dataLoading, dataLoaded } from './status';
 import { shuffleCards } from './cards';
 import { toggleModal } from './modals';
 import { onPlay } from './sound';
+import cardData from '../assets/game-data/cards.json';
 
-
-// these should really be an environment variable
-const endpoint = 'https://cards.json';
-const triplesEndpoint = 'https:///triples.json';
 
 let cardId = 0;
+/**
+ * this function is only needed for testing - otherwise cardId could just be reassigned inline, below
+ */
 export const resetCardId = () => {
-  /** this function is only needed for testing - otherwise it could just be reassigned inline, below */
   cardId = 0;
 };
 
@@ -71,19 +67,10 @@ export const resetGame = () => ({ type: RESET_GAME });
 
 export const startGame = () => ({ type: START_GAME });
 
-export const loadInitialGameData = () => dispatch => {
-  const dataType = 'cards';
-  dispatch(dataLoading(dataType)); // make the state aware that the data is loading
-  return axios
-    .get(endpoint)
-    .then(({ data }) => {
-      dispatch({ type: LOAD_GAME, payload: parseCardData(data) });
-    })
-    .catch(console.error) // error handling should be better than just logging to the console
-    .then(() => dispatch(dataLoaded(dataType))); // even if there is an error, make the state aware that the data has finished loading
-};
+export const loadInitialGameData = () => ({ type: LOAD_GAME, payload: parseCardData(cardData) });
 
 /**
+ * Redux Thunk action
  * @param {number} elapsedTime - the elapsed time of the game from start to finish
  */
 export const finishGame = elapsedTime => (dispatch, getState) => {
@@ -102,21 +89,6 @@ export const finishGame = elapsedTime => (dispatch, getState) => {
     dispatch(onPlay('success'));
   }, 600);
 };
-
-export const selectTriples = () => dispatch => {
-  const dataType = 'cards';
-  dispatch(dataLoading(dataType)); // make the state aware that the data is loading
-  return axios
-    .get(triplesEndpoint)
-    .then(({ data }) => {
-      const cardsById = {};
-      const cards = parseCards(data.cards);
-      cards.forEach(card => (cardsById[card.id] = card));
-      dispatch({ type: LOAD_TRIPLES, payload: { cards, cardsById } });
-    })
-    .catch(console.error) // error handling should be better than just logging to the console
-    .then(() => dispatch(dataLoaded(dataType))); // even if there is an error, make the state aware that the data has finished loading
-}
 
 /**
  * Redux Thunk action

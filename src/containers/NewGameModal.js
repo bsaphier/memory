@@ -1,23 +1,21 @@
 import { connect } from 'react-redux';
 import { onPlay } from '../action-creators/sound';
-import { loadInitialGameData } from '../action-creators/game';
 import { toggleModal } from '../action-creators/modals';
-import LandingModal from '../components/GameModals/LandingModal';
+import NewGameModal from '../components/GameModals/NewGameModal';
 
 
-const modalId = 'landing';
+const modalId = 'start';
 
 const mapStateToProps = state => ({
-  loading: state.status.cards,
   active: state.modals[modalId],
+  level: state.game.selectedLevel,
 });
 
 const mapDispatchToProps = dispatch => ({
-  onLoadGameData: () => {
+  onStartGame: () => {
     dispatch(onPlay('typewriter'));
-    dispatch(loadInitialGameData());
     dispatch(toggleModal(modalId));
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(LandingModal);
+export default connect(mapStateToProps, mapDispatchToProps)(NewGameModal);

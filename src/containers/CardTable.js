@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import getActiveCards from '../selectors/getActiveCards';
 import getTableRows from '../selectors/getTableRows';
-// import { selectCard } from '../action-creators/cards';
-// import { startGame } from '../action-creators/game';
+import { selectCard } from '../action-creators/cards';
+import { startGame } from '../action-creators/game';
 import { onPlay } from '../action-creators/sound';
 import CardTable from '../components/CardTable/CardTable';
 
@@ -17,13 +17,13 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onSelectFirstCard: card => {
-    // dispatch(startGame());
+    dispatch(startGame());
     dispatch(onPlay('cardDrag'));
-    // dispatch(selectCard(card));
+    dispatch(selectCard(card));
   },
   onSelectCard: card => {
     dispatch(onPlay('cardDrag'));
-    // dispatch(selectCard(card));
+    dispatch(selectCard(card));
   },
 });
 

@@ -26,8 +26,9 @@ export function shuffle(array) {
   return array;
 }
 
-export const shuffleCards = level => (dispatch, getState) => {
-  const { cards } = getState();
+export const shuffleCards = levelName => (dispatch, getState) => {
+  const { cards, game } = getState();
+  const level = levelName ? levelName : game.selectedLevel;
   const shuffledCards = shuffle([...cards.cardsByLevel[level]]);
   dispatch({
     type: SHUFFLE_CARDS,

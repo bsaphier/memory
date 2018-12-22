@@ -1,0 +1,32 @@
+.container {
+  border-top: 1px solid #bfbfbf;
+  border-bottom: 1px solid #bfbfbf;
+  min-height: 30px;
+}
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  min-height: 1px;
+  flex: 1 1 0%;
+  margin: 0 auto;
+  max-width: 1280px;
+  padding: 0 12px;
+}
+
+.content {
+  display: flex;
+  flex: 1 1 auto;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  margin: 0 12px;
+}
+
+.buttonList {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+}
