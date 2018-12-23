@@ -15,15 +15,15 @@
 }
 
 .title {
-  /* font-family: ''; */
+  font-family: "Zilla Slab", serif;
   font-size: 36px;
   font-weight: bold;
   margin-right: 12px;
 }
 
 .date {
-  /* font-family: ''; */
+  font-family: "Nunito", sans-serif;
   display: inline-block;
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 300;
 }

@@ -135,7 +135,7 @@
   border: 1px solid #ccc;
   cursor: pointer;
   font-size: 18px;
-  /* font-family: ''; */
+  font-family: "Nunito", sans-serif;
   max-width: 90px;
   padding: 15px 20px;
   background-color: #fff;

@@ -45,7 +45,7 @@
 
 .closeButton {
   font-size: 35px;
-  /* font-family: ''; */
+  font-family: "Nunito", sans-serif;
   cursor: pointer;
   color: #959595;
   font-weight: lighter;
@@ -73,13 +73,13 @@
 .title {
   font-size: 38px;
   font-weight: 700;
-  /* font-family: ''; */
+  font-family: "Zilla Slab", serif;
 }
 
 .content {
   font-size: 18px;
   font-weight: 500;
-  /* font-family: ''; */
+  font-family: "Nunito", sans-serif;
   margin: 25px 0 29px;
 }
 .content b {
@@ -114,7 +114,7 @@
   cursor: pointer;
   font-size: 18px;
   font-weight: 500;
-  /* font-family: ''; */
+  font-family: "Nunito", sans-serif;
   min-width: 142px;
   padding: 15px;
 }
